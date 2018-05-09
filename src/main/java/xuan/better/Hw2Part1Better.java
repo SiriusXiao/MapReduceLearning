@@ -59,8 +59,8 @@ public class Hw2Part1Better {
 
     public static class LineReducer extends Reducer<Line, DoubleWritable, Text, Text> {
 
-        private static final String BLOCK_KEY = "%-20s";
-        private static final String BLOCK_VALUE = "%-10s";
+        private static final String BLOCK_KEY = "%-15s";
+        private static final String BLOCK_VALUE = "%-5s";
         private Text mOutKey;
         private Text mOutValue;
 
@@ -81,9 +81,9 @@ public class Hw2Part1Better {
             }
             String from = key.getFrom();
             String to = key.getTo();
-            String distance = String.format("%.2f", sum);
-            mOutKey.set(String.format(BLOCK_KEY, "From:" + from) + String.format(BLOCK_KEY, "To:" + to));
-            mOutValue.set(String.format(BLOCK_VALUE, "Count:" + count) + String.format(BLOCK_KEY, "Distance:" + distance));
+            String distance = String.format("%.3f", sum);
+            mOutKey.set("From:" + String.format(BLOCK_KEY, from) + "To:" + String.format(BLOCK_KEY, to));
+            mOutValue.set("Count:" + String.format(BLOCK_VALUE, count) + "Distance:" + String.format(BLOCK_KEY, distance));
             context.write(mOutKey, mOutValue);
         }
     }
